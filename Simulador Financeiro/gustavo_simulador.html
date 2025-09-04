@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro</title>
+</head>
+
+<body>
+    <h1>Simulador Financeiro do Gugu !</h1>
+
+
+    <!-- Coletamos quantidade aproximada de visitantes do shopping -->
+    Informe a quantidade visitantes por mês:
+    <input id="ipt_visitantes">
+    <br><br>
+
+    <!-- Aqui estamos coletando o ticket médio (Quanto cada cliente gasta no shopping) -->
+    Informe o Ticket médio (R$):
+    <input id="ipt_tkm">
+    <br><br>
+
+    <!-- Coletamos o custo que o shopping gasta com a equipe(limpeza, segurança e etc) por mês -->
+    Informe os custos mensais com equipes (R$):
+    <input id="ipt_equipe">
+    <br><br>
+
+    <button onclick="simulador()">Simular</button>
+    <br><br>
+
+    <div id="resultado"></div>
+
+
+</body>
+
+<script>
+    function simulador() {
+        var visitantes = Number(ipt_visitantes.value);
+        var tkm = Number(ipt_tkm.value);
+        var equipe = Number(ipt_equipe.value);
+
+        // Para calcular a receita atual multiplicamos a quantidade de visitantes pelo o valor do ticket médio.
+        var receita_atual = visitantes * tkm;
+
+        // Aumento médio de vendas considerado: +6% (estudos apontam melhorias entre 5% e 10% com gestão de fluxo).
+        var nova_receita = receita_atual + (receita_atual * 0.06)
+
+        // Ganho de vendas utilizando os nossos serviçoes
+        var vendas = nova_receita - receita_atual;
+
+        // Economia com equipes: 8% (com base em casos reais de otimização de escalas).
+        var economia = equipe * 0.08;
+
+       // O ganho total com a vendas e a econonomia de equipe
+        var ganho_total = vendas + equipe;
+       
+        // Um valor de investimento no nosso serviço (essa variavel pode ser descartada se for nescessario)
+        var investimento = 15000.00
+
+       // O lucro liquido é a soma de todos os ganhos (vendas e econonimia de equipe) menos o custo do investimento (serviço)
+        var lucro = ganho_total - investimento;
+
+        resultado.innerHTML = 'Receita atual: ' + receita_atual.toFixed(2) + '<br> Nova receita estimada: ' + nova_receita.toFixed(2) + '<br> Ganho em vendas: ' + vendas.toFixed(2) + '<br> Economia em equipes: ' + economia.toFixed(2) + '<br> Ganhos totais: ' + ganho_total.toFixed(2) + '<br> Investimento no sistema: ' + investimento + '<br> Lucro líquido: ' + lucro.toFixed(2)
+
+    }
+</script>
+
+</html>
