@@ -7,7 +7,7 @@ CREATE TABLE entradas_shopping (
 idEntrada INT PRIMARY KEY AUTO_INCREMENT,
 nomeEntrada VARCHAR(50),
 localizasao VARCHAR(100),
-shopping VARCHAR(100)
+porcentagem_fluxo DECIMAL(5,2)
 );
 
 INSERT INTO entradas_shopping VALUES 
@@ -30,5 +30,15 @@ impactoFluxo DECIMAL (5,2)
 
 INSERT INTO eventos_entrada VALUES 
 (DEFAULT, 'Entrada Norte', '2025-07-04 11:30', 'Manutenção', 23.33);
+
+-- -------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE shoppings_cadastrado(
+idShopping INT AUTO_INCREMENT PRIMARY KEY,
+nomeShopping VARCHAR(100),
+endereco VARCHAR(100),
+fluxoTotal INT,
+gerente VARCHAR(100)
+);
 
 SELECT * FROM eventos_entrada;
