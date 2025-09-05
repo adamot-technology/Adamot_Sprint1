@@ -43,13 +43,13 @@ describe sensor;
 create table historicoSensor (
 idHistorico int primary key auto_increment,
 hora datetime,
-distancia decimal (5,2)
+detectar INT
 );
 
 insert into historicoSensor (hora, distancia) values
-('2025-02-09 12:30:00', 28.15),
-('2025-02-09 17:00:00', 29.02),
-('2025-02-09 20:00:00', 158.54);
+('2025-02-09 12:30:00', 0),
+('2025-02-09 17:00:00', 1),
+('2025-02-09 20:00:00', 1);
 
 select * from historicoSensor;
 
