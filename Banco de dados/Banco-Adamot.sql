@@ -46,7 +46,7 @@ hora datetime,
 detectar INT
 );
 
-insert into historicoSensor (hora, distancia) values
+insert into historicoSensor (hora, detectar) values
 ('2025-02-09 12:30:00', 0),
 ('2025-02-09 17:00:00', 1),
 ('2025-02-09 20:00:00', 1);
