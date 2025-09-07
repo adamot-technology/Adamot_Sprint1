@@ -6,13 +6,14 @@ idCadastro int primary key auto_increment,
 nome varchar(50),
 email varchar (50),
 cnpj char(18),
-senha varchar(20)
+senha varchar(20),
+confirmarSenha varchar(20)
 );
 
-insert into cadastro (nome, email, cnpj, senha) values
-('David Castro','davidcastro@gmail.com', '77.637.684/0001-61', '*************'),
-('Leandro Assunção','leandroassuncao@gmail.com', '06.662.892/0001-72', '***********'),
-('Mauricio Antonio','mauricioantonio@gmail.com', '85.606.575/0001-05', '***************');
+insert into cadastro (nome, email, cnpj, senha, confirmarSenha) values
+('David Castro','davidcastro@gmail.com', '77.637.684/0001-61', '*************', '*************'),
+('Leandro Assunção','leandroassuncao@gmail.com', '06.662.892/0001-72', '***********', '***********'),
+('Mauricio Antonio','mauricioantonio@gmail.com', '85.606.575/0001-05', '***************', '***************');
 
 select * from cadastro;
 
