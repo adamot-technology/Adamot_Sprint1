@@ -34,7 +34,7 @@ insert into sensor (shopping, saida, posicao, modelo) values
 ('Shopping Estress', 'Saída Sul', 'Teto', 'Ultrassonico'),
 ('Shopping Estress', 'Saída Metrô', 'Teto', 'Ultrassonico'),
 ('Shopping Estress', 'Saída Estacionamento Norte', 'Lado esquerdo', 'Ultrassonico'),
-('Shopping Estress', 'Saída Estacionamento Subsolo', 'Ladoesquerdo', 'Ultrassonico');
+('Shopping Estress', 'Saída Estacionamento Subsolo', 'Lado esquerdo', 'Ultrassonico');
 
 select * from sensor;
 
