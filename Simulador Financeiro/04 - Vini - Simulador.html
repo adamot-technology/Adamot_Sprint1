@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calucadora financeira</title>
+</head>
+
+<!-- O usuário digita o número de pessoas em cada entrada(entra do metro, principal e estacionamento), a taxa de conversão e o ticket médio.
+
+1- O script vai somar as três entradas (totalpessoas)
+2- Vai multiplicar pelo percentual da taxa de conversão, para estimar quantas pessoas dessas que entraram, poderiam comprar alguma coisa (clientes)
+3- Depois vai multiplicar o resultado pelo ticket medio, pra calcular quanto o shopping poderia deixar de perder (faturamento_perdido)
+
+-->
+
+<body>
+
+    <h2>Calaular a á area do shopping</h2>
+
+    Entrada Principal: <input id="iptprincipal"><br>
+    Entrada Estacionamento: <input id="iptestacionamento"><br>
+    Entrada Metro: <input id="iptmetro"><br>
+    Taxa de conversão: <input id="iptconversao"><br> <!-- Pessoas que compraram --> 
+    Ticket médio: <input id="iptvalor"><br> <!-- valor médio de compra de cada cliente-->
+
+        <button onclick="calcular()">Calcular</button><br><br>
+
+            <div id="divmsg"></div>
+
+                <span style="color: blue;"></span>
+    
+</body>
+
+<script>
+
+    function calcular(){
+
+        var totalpessoas = Number(iptprincipal.value) + Number(iptestacionamento.value) + Number(iptmetro.value)
+        var clientes = totalpessoas * (Number(iptconversao.value) / 100)
+        var faturamento_perdido = clientes * Number(iptvalor.value)
+
+            divmsg.innerHTML = 
+                `De um total de <span style="color: blue;">${totalpessoas.toFixed(0)}</span> pessoas que entraram no shopping <br>
+                Temos uma quantidade de <span style="color: blue;">${clientes.toFixed(0)}</span> possiveis clientes<br>
+                que poderiam entrar em alguma loja e comprar algo <br>
+                Sabendo desses dados, e sabendo quais atitudes tomar, conseguimos fazer um calculo<br>
+                de que aproximadamente o shopping deixa de perder <span style="color: blue;">R$${faturamento_perdido.toFixed(2)}</span> `
+
+    }   
+
+</script>
+
+</html>
