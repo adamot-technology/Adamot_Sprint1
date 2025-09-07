@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calucadora financeira</title>
+</head>
+
+<body>
+
+    <h2>Cálculo da área do shopping</h2>
+
+    Entrada Sul: <input id="iptSul"><br>
+    Entrada Estacionamento: <input id="iptEstacionamento"><br>
+    Entrada Metro: <input id="iptMetro"><br>
+    Taxa de conversão: <input id="iptConversao"><br> <!-- Pessoas que compraram --> 
+    Ticket médio: <input id="iptTicket"><br> <!-- valor médio de compra de cada cliente-->
+    <button onclick="calcular()">Calcular</button><br><br>
+
+    <div id="divMsg"></div>
+    
+</body>
+
+<script>
+
+    function calcular(){
+
+    var fluxo = Number(iptSul.value) + Number(iptEstacionamento.value) + Number(iptMetro.value)
+    var clientes = fluxo * (Number(iptConversao.value) / 100)
+    var faturamento_perdido = clientes * Number(iptTicket.value)
+
+    divmsg.innerHTML = `De um total de ${fluxo}pessoas que entraram no shopping <br>
+                Temos uma quantidade de ${clientes} possiveis clientes<br>
+                que poderiam entrar em alguma loja e comprar algo <br>
+                Sabendo desses dados, e sabendo quais atitudes tomar, conseguimos fazer um calculo<br>
+                de que aproximadamente o shopping deixa de perder R$ ${faturamento_perdido.toFixed(2)}`
+
+    }   
+
+</script>
+
+</html>
