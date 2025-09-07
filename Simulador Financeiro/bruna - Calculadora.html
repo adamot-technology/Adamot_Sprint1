@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+</head>
+
+<body>
+    <h2>Simule Agora:</h2>
+    Descubra se o valor médio que você cobra está afastando lojistas.
+    <br>
+    Faça uma simulação com base no fluxo de pessoas em <b>3 entradas do shopping e no tamanho de uma loja de 40m²*</b>
+    <br><br>
+
+    Fluxo mensal de pessoas: <input id="Fmensal">
+    <br><br>
+    Preço por m²: <input id="precom2">
+    <br><br>
+    <button onclick="simular()">Simular</button>
+    <br><br>
+    <div id="msg"></div>
+
+</body>
+<script>
+    function simular() {
+        var fluxo = Number(Fmensal.value);
+        var preco = Number(precom2.value);
+
+        entradaA = fluxo * 0.6;
+        entradaB = fluxo * 0.3;
+        entradaC = fluxo * 0.1;
+
+        media = fluxo / 3;
+
+        diferencaA = entradaA / media;
+        diferencaB = entradaB / media;
+        diferencaC = entradaC / media;
+
+        fluxoMedioA = (diferencaA - 1) * 100;
+        fluxoMedioB = (diferencaB - 1) * 100;
+        fluxoMedioC = (diferencaC - 1) * 100;
+
+        ajustePrecoA = diferencaA * preco;
+        ajustePrecoB = diferencaB * preco;
+        ajustePrecoC = diferencaC * preco;
+
+        totalA = ajustePrecoA * 40;
+        totalB = ajustePrecoB * 40;
+        totalC = ajustePrecoC * 40;
+
+        valorCliente = preco * 40;
+
+
+        msg.innerHTML = `<h3> Resultado </h3> Seu valor por m² é: R$${preco.toFixed(2)} a média do fluxo é ${media.toFixed(2)} os alugueis nas entradas: <br><br>
+        <b>Entrada A</b><br><br>
+        Quantidade de pessoas que passa é: ${entradaA} representando ${fluxoMedioA.toFixed(0)}% da média do fluxo<br>
+        Preço do aluguel que está cobrando: ${valorCliente.toFixed(2)}<br>
+        <b>Com o equipamento:</b><br>
+        Valor que deveria estar pagando: ${ajustePrecoA.toFixed(2)}<br>
+        Valor do aluguel que deveria pagar ${totalA.toFixed(2)}<br><br>
+
+        <b>Entrada B</b><br><br>
+        Quantidade de pessoas que passa é: ${entradaB} representando ${fluxoMedioB.toFixed(0)}% da média do fluxo<br>
+        Preço do aluguel que está cobrando: ${valorCliente.toFixed(2)}<br>
+        <b>Com o equipamento:</b><br>
+        Valor que deveria estar pagando: ${ajustePrecoB.toFixed(2)}<br>
+        Valor do aluguel que deveria pagar ${totalB.toFixed(2)}<br><br>
+
+        <b>Entrada C</b><br><br>
+        Quantidade de pessoas que passa é: ${entradaC} representando ${fluxoMedioC.toFixed(0)}% da média do fluxo<br>
+        Preço do aluguel que está cobrando: ${valorCliente.toFixed(2)}<br>
+        <b>Com o equipamento:</b><br>
+        Valor que deveria estar pagando: ${ajustePrecoC.toFixed(2)}<br>
+        Valor do aluguel que deveria pagar ${totalC.toFixed(2)}<br><br>`
+
+
+
+    }
+</script>
+
+</html>
