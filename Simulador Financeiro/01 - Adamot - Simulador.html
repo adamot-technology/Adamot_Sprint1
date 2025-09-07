@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador financeiro Adamot</title>
+</head>
+<body>
+    <h1>Simulador financeiro Adamot</h1>
+
+    Informe a quantidade de pessoas por mês:
+    <input id="ipt_fluxo">
+    <br><br>
+    Informe o valor do aluguel por m²:
+    <input id="ipt_aluguel">
+    <br><br>
+
+    <button onclick="simular()">Simular</button>
+    <br><br>
+
+    <div id="mensagem"></div>
+    
+</body>
+<script>
+    function simular(){
+        var fluxo = Number(ipt_fluxo.value);
+        var aluguel = Number(ipt_aluguel.value);
+
+        var A = 0.6 * fluxo;
+        var B = 0.3 * fluxo;
+        var C = 0.1 * fluxo;
+
+        var aluguel_A = (aluguel / A) * 100;         
+        var aluguel_B = (aluguel / B) * 100;        
+        var aluguel_C =  (aluguel / C) * 100; 
+        
+        var novo_aluguel_A = (((A * 0.45) - aluguel) / aluguel ) * 100;
+        var novo_aluguel_B = ((aluguel -(B * 0.35)) / aluguel ) * 100;
+        var novo_aluguel_C = ((aluguel - (C * 0.2)) / aluguel ) * 100;
+
+        alert(aluguel_A + ' ' + aluguel_B + ' ' + aluguel_C);
+
+        mensagem.innerHTML = novo_aluguel_A +' ' + novo_aluguel_B + ' ' + novo_aluguel_C
+    }
+</script>
+</html>
