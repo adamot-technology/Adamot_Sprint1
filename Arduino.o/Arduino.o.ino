@@ -12,7 +12,7 @@ void loop() {
 
   float distancia = sensor1.distance();
   
-  if(distancia > 0 && distancia < 20) {
+  if(distancia > 0 && distancia < 10) {
     Serial.println("1");
   } else {
     Serial.println("0");
