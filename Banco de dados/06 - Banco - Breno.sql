@@ -26,10 +26,10 @@ posicao varchar (50)
 );
 
 insert into localArduino (shopping, nome_local, modelo, posicao) values
-('Shopping Estress', 'Saída Sul', 'Ultrassonico', 'Teto'),
-('Shopping Estress', 'Saída Metrô', 'Ultrassonico', 'Teto'),
-('Shopping Estress', 'Saída Estacionamento Norte', 'Ultrassonico', 'Lado esquerdo'),
-('Shopping Estress', 'Saída Estacionamento Subsolo', 'Ultrassonico', 'Lado esquerdo');
+('Shopping Estress', 'Saída Sul', 'Ultrassônico', 'Teto'),
+('Shopping Estress', 'Saída Metrô', 'Ultrassônico', 'Teto'),
+('Shopping Estress', 'Saída Estacionamento Norte', 'Ultrassônico', 'Lado esquerdo'),
+('Shopping Estress', 'Saída Estacionamento Subsolo', 'Ultrassônico', 'Lado esquerdo');
 
 select * from localArduino;
 
