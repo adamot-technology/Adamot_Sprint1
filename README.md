@@ -1,4 +1,4 @@
-# Adamot_Sprint1
+# Adamot
 
 Link do prototipo:
 https://www.figma.com/proto/RgtaSQWSQPxHLHN2YGKq6T/Adamot?page-id=0%3A1&node-id=6-80&viewport=250%2C356%2C0.33&t=xHHgzr4l2cm6mOp3-1&scaling=contain&content-scaling=fixed
