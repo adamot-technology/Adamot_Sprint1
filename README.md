@@ -1,7 +1,35 @@
-# Adamot
+# ADAMOT
 
-Link do prototipo:
-https://www.figma.com/proto/RgtaSQWSQPxHLHN2YGKq6T/Adamot?page-id=0%3A1&node-id=6-80&viewport=250%2C356%2C0.33&t=xHHgzr4l2cm6mOp3-1&scaling=contain&content-scaling=fixed
+<img src='https://eu.beasensors.com/thumbor/oog2JENNqsE3p5cmdRreOcn07w4=/fit-in/1024x/--/uploads/2016/10/header-sliding-doors-orascan-scaled.jpg'>
 
-Link do Trello:
-https://trello.com/invite/b/68acbf7ec95416f9faa9b6cc/ATTI8e6f09c060fbcbe40d8709962db87e97581D1686/adamot
+## Nosso Projeto
+falar sobre o nosso projeto aqui
+Utilizando tecnologia acessível e robusta, 
+como sensores ultrassônicos e Arduino, nós capturamos o movimento de pessoas em cada entrada 
+do seu shopping — seja do estacionamento, da rua ou do metrô. Nosso objetivo não é apenas 
+contar, mas gerar inteligência
+
+## Objetivo
+falar sobre o objetivo aqui
+O principal objetivo do projeto é monitorar o fluxo de visitantes em um shopping ou centro
+comercial privado utilizando sensores ultrassônicos e placas Arduino.
+Este sistema considera no cenário hipotético a existência de três áreas com entradas distintas
+(estacionamento, rua e metrô). Os dados gerados serão utilizados para otimizar estratégias 
+comerciais e operacionais
+
+## Contato & Links
+
+daniel.foschini@sptech.school
+joao.coimbra@sptech.school
+lavinia.faria@sptech.school
+robson.almeida@sptech.school
+roger.pinto@sptech.school
+daniel.foschini@sptech.school <br>
+joao.coimbra@sptech.school <br>
+lavinia.faria@sptech.school <br>
+robson.almeida@sptech.school <br>
+roger.pinto@sptech.school <br>
+samuel.florenco@sptech.school
+
+Trello: (`https://trello.com/b/7a18BVO7/adamot`) <br>
+GitHub: (`https://github.com/elias2002-beep/Projeto-PI-Grupo2`)
