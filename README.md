@@ -3,14 +3,12 @@
 <img src='https://eu.beasensors.com/thumbor/oog2JENNqsE3p5cmdRreOcn07w4=/fit-in/1024x/--/uploads/2016/10/header-sliding-doors-orascan-scaled.jpg'>
 
 ## Nosso Projeto
-falar sobre o nosso projeto aqui
 Utilizando tecnologia acessível e robusta, 
 como sensores ultrassônicos e Arduino, nós capturamos o movimento de pessoas em cada entrada 
 do seu shopping — seja do estacionamento, da rua ou do metrô. Nosso objetivo não é apenas 
 contar, mas gerar inteligência
 
 ## Objetivo
-falar sobre o objetivo aqui
 O principal objetivo do projeto é monitorar o fluxo de visitantes em um shopping ou centro
 comercial privado utilizando sensores ultrassônicos e placas Arduino.
 Este sistema considera no cenário hipotético a existência de três áreas com entradas distintas
