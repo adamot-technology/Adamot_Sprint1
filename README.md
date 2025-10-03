@@ -19,11 +19,6 @@ comerciais e operacionais
 
 ## Contato & Links
 
-daniel.foschini@sptech.school
-joao.coimbra@sptech.school
-lavinia.faria@sptech.school
-robson.almeida@sptech.school
-roger.pinto@sptech.school
 daniel.foschini@sptech.school <br>
 joao.coimbra@sptech.school <br>
 lavinia.faria@sptech.school <br>
