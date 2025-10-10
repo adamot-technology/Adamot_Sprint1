@@ -67,7 +67,7 @@ CREATE TABLE endereco(
 
 CREATE TABLE registro(
 idRegistro INT PRIMARY KEY AUTO_INCREMENT,
-registroSensor INT,
+registroSensor INT NOT NULL,
 dtHora DATETIME,
 fkSensor INT,
 CONSTRAINT fk_Registro_Sensor FOREIGN KEY (fkSensor) REFERENCES sensor(idSensor)
