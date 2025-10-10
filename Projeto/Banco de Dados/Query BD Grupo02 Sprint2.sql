@@ -64,3 +64,11 @@ CREATE TABLE endereco(
     numero CHAR(11),
     CONSTRAINT fk_End_Shop FOREIGN KEY (fkShopping) REFERENCES shopping(idShopping)
 );
+
+CREATE TABLE registro(
+idRegistro INT PRIMARY KEY AUTO_INCREMENT,
+registroSensor INT,
+dtHora DATETIME,
+fkSensor INT,
+CONSTRAINT fk_Registro_Sensor FOREIGN KEY (fkSensor) REFERENCES sensor(idSensor)
+);
