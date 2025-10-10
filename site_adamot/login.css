@@ -1,0 +1,13 @@
+/* margem */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial; /*fonte do site*/
+} 
+
+body {
+    background-color: #fff; /* cor do fundo do site*/ 
+    color: #333; /* cor da fonte*/
+    line-height: 1.6;/*espaçamento de linha */
+}
