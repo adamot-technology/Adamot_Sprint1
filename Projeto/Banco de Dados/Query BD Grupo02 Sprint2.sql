@@ -1,3 +1,4 @@
+
 -- banco de dados grupo 02 adamot
 
 CREATE DATABASE adamot;
@@ -26,7 +27,7 @@ CREATE TABLE cadastro(
 );
 
 CREATE TABLE auditoria(
-	idAuditoria INT PRIMARY KEY AUTO_INCREMENT,
+	idAuditoria INT,
     fkCadastro INT,
     CONSTRAINT pkAuditCad PRIMARY KEY (idAuditoria,fkCadastro),
     CONSTRAINT fk_Aud_Cad FOREIGN KEY (fkCadastro) REFERENCES cadastro(idCadastro),
@@ -36,7 +37,7 @@ CREATE TABLE auditoria(
 );
 
 CREATE TABLE entrada (
-	idEntrada INT PRIMARY KEY AUTO_INCREMENT,
+	idEntrada INT,
     fkShopping INT,
     CONSTRAINT pkEntShop PRIMARY KEY (idEntrada,fkShopping),
     CONSTRAINT fk_Ent_Shop FOREIGN KEY (fkShopping) REFERENCES shopping(idShopping),
@@ -52,12 +53,14 @@ CREATE TABLE sensor (
 );
 
 CREATE TABLE endereco(
-	idEndereco INT PRIMARY KEY AUTO_INCREMENT,
+	idEndereco INT,
+	fkShopping INT,
+    constraint pkEndereco_Shopping
+    primary key (idEndereco, fkShopping),
     cep CHAR(8),
     bairro VARCHAR(45),
     cidade CHAR(2),
     uf CHAR(2),
     numero CHAR(11),
-    fkShopping INT,
     CONSTRAINT fk_End_Shop FOREIGN KEY (fkShopping) REFERENCES shopping(idShopping)
 );
