@@ -25,4 +25,5 @@ roger.pinto@sptech.school <br>
 samuel.florenco@sptech.school
 
 Trello: (`https://trello.com/b/7a18BVO7/adamot`) <br>
-GitHub: (`https://github.com/elias2002-beep/Projeto-PI-Grupo2`)
+GitHub: (`https://github.com/elias2002-beep/Projeto-PI-Grupo2`)<br>
+Figma: (`https://www.figma.com/design/sguOj1QeL4xNEQnqKngQsa/Untitled?node-id=0-1&t=gjISrwgCm6Hj8KF2-1`)<br>
