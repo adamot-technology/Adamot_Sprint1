@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adamot</title>
+    <link rel="stylesheet" href="site.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="logo1.png" alt="Adamot">
+                </div class= link>  
+                <div>
+
+                </div>
+                <div class="contato-link">
+                    <a href="#contato">Fale Conosco</a>
+                    
+                </div>
+                <div>
+                    <div class="login-link">
+                    <a href="login.html">Login</a>
+
+                    </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2 style="font-size: 50px;">Transforme dados em <br><span>insights valiosos!</span></h2>
+                <p>Transforme números brutos de fluxo de pessoas em insights valiosos para potencializar estratégias, otimizar espaços e impulsionar o sucesso do seu negócio.</p>
+                <a href="#simulador1" class="btn">Simule agora</a>
+            
+            </div>
+            <div class="hero-image">
+                <img src="image (2).png" alt="Análise de dados">
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="quem-somos">
+        <div class="container">
+            <h2 class="quem" style="color: #6a3093;">Quem Somos</h2>
+            <p>A Adamot é uma empresa portuguesa que atua na análise de dados e monitoramento de fluxo em centros comerciais. Com tecnologia avançada e equipe especializada, oferece soluções personalizadas para ajudar gestores e varejistas a tomarem decisões estratégicas baseadas em dados. Seu foco está na excelência, inovação e parceria com os clientes para tornar os ambientes comerciais mais eficientes e lucrativos</p>
+        </div>
+    </section>
+
+    <section class="services" id="servicos">
+        <div class="container">
+            <h2 style="position: relative; right: 200px;">Nossos Serviços</h2>
+            <p class="oferece">Oferecemos soluções de análise de fluxo de pessoas para shopping centers, com tecnologia de ponta e insights valiosos para o seu negócio.</p>
+            
+            <div class="service-cards">
+                <div class="service-card">
+                    <h3>&#128200 Análise de Fluxo de Pessoas</h3>
+                    <p>Análise detalhada do fluxo de pessoas em tempo real para otimizar suas estratégias.</p>
+                </div>
+                <div class="service-card">
+                    <h3> &#128221 Tomada de decisões</h3>
+                    <p>Transforme dados brutos em insights valiosos para tomada de decisões estratégicas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="simulator" id="simulador1">
+        <div class="container">
+       <br><br><br>
+
+            <h2>Simulador Financeiro - Adamot</h2>
+            <p>Simule o impacto de suas decisões financeiras com nosso poderoso simulador financeiro.<br> Anule taxas, explore cenários e otimize seus investimentos com precisão.<br> 
+            Informe os dados dentro do box.</p>
+
+        </div>
+       <br>
+        <script defer src="simuladorFinanceiro.js"></script>
+
+    <div class="simulador" id="simulador">
+        
+    Setor de Referência:<br> <br><input type="text" id="iptSetor"placeholder="Ex: Entrada 2"> <br>
+    <br></div>
+
+    Valor do aluguel por m<sup>2</sup>: <br><br><input type="number" id="iptAluguel" placeholder="Ex:78"><br><br>
+
+    
+    Em quanto % você pretende aumentar seu lucro:<br> <br><input type="Number" id="iptPorcent" placeholder="Ex:27"><br><br>
+           
+    <div id="mensagem"></div>
+   <center> <button onclick="calcularOperação()" class="simular">Simular Operação</button></center><br>
+
+<br><br><br>
+
+</section>
+
+    <section class="contact" id="contato">
+          <img class="gato" src="image__2_-removebg-preview.png" alt="Contato">
+        <div class="container">
+            <h2>Fale Conosco</h2>
+
+         <script defer src="contato.js"></script>
+         
+                <div class="form-group">
+                  Nome Completo <input id="ipt_nome" type="text" placeholder="Ex: Meu nome é....">
+                </div>
+                <div class="form-group">
+
+                    Email<input id="ipt_email" type="email" placeholder="Ex: email@gmail.com">
+                </div>
+                <div class="form-group">
+
+                   Mensagem<input id="ipt_mensagem" type="text" placeholder="Ex: Gostaria de falar sobre..">
+                </div>
+                <center> <div id="resultado"></div></center> <!--center no css-->
+
+                <button onclick="contato()" class="btn">Enviar Mensagem</button>
+                <br><br>
+            
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <img src="logo1.png" alt="Logo Amanet">
+            </div>
+            <div class="footer-info">
+                <div class="footer-menu">
+                    <h3>Menu</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#quem-somos">Quem Somos</a></li>
+                        <li><a href="#servicos">Serviços</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contato</h3>
+                    <p>Email:</p>
+                    <a href="mailto:contato@amanetdigital.com">adamot.technology@gmail.com</a>
+                    <p>Telefone:</p>
+                    <a href="contato">(11)99999-9999</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 adamot. Todos os direitos reservados.</p>
+            <div class="footer-links">
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Termos de Uso</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
