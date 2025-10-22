@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard de Fluxo de Pessoas</title>
+
+  <!-- Chart.js para gráficos -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Font Awesome para ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    /* Variáveis de Cores */
+    :root {
+      --primary-color: #6a3093;
+      /* Roxo Principal */
+      --accent-color: #9370db;
+      /* Roxo Mais Claro/Acento */
+      --background-color: #f5f5f5;
+      --card-bg: white;
+      --text-color: #333;
+    }
+
+    /* Estilos do body (Base CSS) */
+    body {
+      background-color: var(--background-color);
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    /* Header (Base CSS) */
+    header {
+      background-color: var(--primary-color);
+      padding: 1rem;
+      text-align: center;
+      color: white;
+      margin-bottom: 5px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+    }
+
+    /* Main Container (Base CSS) */
+    .main-container {
+      display: flex;
+    }
+
+    /* Sidebar (Base CSS Aprimorado) */
+    .sidebar {
+      background-color: var(--primary-color);
+      width: 200px;
+      /* Altura ajustada para ser flexível */
+      padding: 1rem;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      height: calc(170vh - 80px);
+      position: sticky;
+      top: 0;
+      left: 0;
+    }
+
+    .sidebar a {
+      display: flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      margin: 0.5rem 0;
+      transition: background-color 0.3s, transform 0.1s;
+    }
+
+    .sidebar a i {
+      margin-right: 10px;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: var(--accent-color);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    #sair {
+      margin-top: auto;
+      /* Empurra o botão 'Sair' para o final */
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 1rem;
+      color: #ebbcbc;
+    }
+
+    #sair:hover {
+      background-color: #c0392b;
+      /* Vermelho sutil ao sair */
+    }
+
+    /* Content Area (Base CSS) */
+    .content {
+      flex: 1;
+      padding: 1rem 2rem;
+    }
+
+    /* Welcome Bar (Base CSS) */
+    .welcome-bar {
+      background-color: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      text-align: left;
+      color: var(--text-color);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      border-left: 5px solid var(--accent-color);
+    }
+
+    .welcome-bar span {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    /* Filter Panel */
+    .filter-panel {
+      background-color: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex: 1;
+      min-width: 250px;
+      /* Garante que os grupos não fiquem muito apertados */
+    }
+
+    .filter-group i {
+      color: var(--primary-color);
+    }
+
+    .filter-panel select,
+    .filter-panel button {
+      padding: 0.75rem 1rem;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      flex-grow: 1;
+    }
+
+    .filter-panel button {
+      background-color: var(--primary-color);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.1s;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      flex-grow: 0;
+      /* Botão não deve crescer muito */
+    }
+
+    .filter-panel button:hover {
+      background-color: #5d297d;
+      transform: translateY(-1px);
+    }
+
+
+    /* KPIs (Base CSS Aprimorado) */
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .kpis .card {
+      background-color:#c8bedc;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 120px;
+      transition: transform 0.2s;
+    }
+
+    .kpis .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .kpis .card h3 {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+      font-weight: normal;
+    }
+
+    .kpis .card p {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: var(--text-color);
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.75rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid #eed6f9;
+    }
+
+    .card-footer i {
+      font-size: 1.8rem;
+    }
+
+    /* Cores dos Ícones KPI */
+    .icon-visitor {
+      color: var(--primary-color);
+    }
+
+    .icon-occupancy {
+      color: #e67e22;
+      /* Laranja */
+    }
+
+    .icon-peak {
+      color: #c0392b;
+      /* Vermelho */
+    }
+
+    .icon-average {
+      color: #27ae60;
+      /* Verde */
+    }
+
+    /* Graphs Container (Base CSS Aprimorado) */
+    .graphs-container {
+      display: flex;
+      gap: 1.5rem;
+      /* Espaçamento mais bonito */
+    }
+
+    .chart-container,
+    .heatmap-container {
+      flex: 1;
+      min-width: 500px;
+      /* Garante que não fiquem muito pequenos */
+      background-color: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      height: 500px;
+      /* Altura fixa para alinhar os dois */
+    }
+
+    .chart-container h2,
+    .heatmap-container h2 {
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--accent-color);
+      padding-bottom: 0.5rem;
+    }
+
+    /* Heatmap Specific Styles */
+    .heatmap-svg {
+      width: 100%;
+      height: 100%;
+      max-height: 300px;
+      margin-top: 10px;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .main-container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        margin: 0;
+        border-radius: 0;
+        padding-bottom: 0;
+      }
+
+      .sidebar a {
+        margin: 0.25rem 0;
+      }
+
+      #sair {
+        margin-top: 1rem;
+        padding-top: 0.5rem;
+        border-top: none;
+      }
+
+      .content {
+        padding: 1rem;
+      }
+
+      .graphs-container {
+        flex-direction: column;
+      }
+
+      .chart-container,
+      .heatmap-container {
+        height: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1><i class="fas fa-chart-line"></i> Dashboard de Fluxo de Pessoas</h1>
+  </header>
+
+  <div class="main-container">
+    <aside class="sidebar">
+      <!-- Links de navegação com ícones -->
+      <a href="#" class="active"><i class="fas fa-home"></i> Fluxo geral</a>
+      <a href="#"><i class="fas fa-chart-area"></i> Análise por setor</a>
+      <a href="#"><i class="fas fa-bell"></i> Chamados</a>
+      <a href="#"><i class="fas fa-file-alt"></i> Relatórios</a>
+      <a href="#site.html" id="sair"><i class="fas fa-sign-out-alt"></i> Sair</a>
+    </aside>
+
+    <div class="content">
+      <div class="welcome-bar">
+        <span id="welcomeMsg"></span>
+      </div>
+
+      <!-- Painel de Filtros -->
+      <div class="filter-panel">
+        <div class="filter-group">
+          <i class="fas fa-calendar-alt"></i>
+          <select id="filtroPeriodo">
+            <option value="7dias">Últimos 7 dias</option>
+            <option value="30dias" selected>Últimos 30 dias</option>
+            <option value="mesAtual">Mês Atual</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <i class="fas fa-building"></i>
+          <select id="filtroSetor">
+            <option value="all" selected>Todos os Setores</option>
+            <option value="entrada">Entrada 1 - Principal</option>
+            <option value="caixas">Entrada 2 - Lateral Sul</option>
+            <option value="infantil">Entrada 3 - Lateral Norte</option>
+          </select>
+        </div>
+
+        <button onclick="aplicarFiltros()"><i class="fas fa-filter"></i> Aplicar</button>
+      </div>
+
+      <!-- KPIs (Key Performance Indicators) -->
+      <section class="kpis">
+        <div class="card">
+          <h3>Total de visitantes de hoje</h3>
+          <p id="totalVisitantes">1.850</p>
+          <div class="card-footer">
+            <span class="text-sm text-green-600 font-bold"><i class="fas fa-arrow-up"></i> +15% Comparando ao mẽs anterior</span>
+            <i class="fas fa-users icon-visitor"></i>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Ocupação atual de hoje</h3>
+          <p id="ocupacaoAtual">72%</p>
+          <div class="card-footer">
+            <span class="text-sm text-red-600 font-bold"><i class="fas fa-arrow-down"></i> -8% Comparando ao mẽs anterior</span>
+            <i class="fas fa-door-open icon-occupancy"></i>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Pico de fluxo de hoje</h3>
+          <p id="picoFluxo">450</p>
+          <div class="card-footer">
+            <span class="text-sm text-green-600 font-bold"><i class="fas fa-arrow-up"></i> +5% Comparando ao mẽs anterior</span>
+            <i class="fas fa-fire icon-peak"></i>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Média por hora de hoje</h3>
+          <p id="mediaHora">185</p>
+          <div class="card-footer">
+            <span class="text-sm text-green-600 font-bold"><i class="fas fa-arrow-up"></i> +3% Comparando ao mẽs anterior</span>
+            <i class="fas fa-clock icon-average"></i>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gráficos e Mapa de Calor -->
+      <div class="graphs-container">
+        <div class="chart-container">
+          <h2><i class="fas fa-chart-line"></i> Fluxo Diário por Hora</h2>
+          <canvas id="linechart"></canvas>
+        </div>
+        <div class="heatmap-container">
+          <h2><i class="fas fa-map-marker-alt"></i> Mapa de Calor (Setores)</h2>
+          <!-- SVG para o Mapa de Calor -->
+          <svg class="heatmap-svg" viewBox="0 0 100 70">
+            <rect x="5" y="5" width="90" height="60" fill="#f0f4ff" rx="5" stroke="#ccc" stroke-width="0.5" />
+
+            <!-- Entrada Principal (Fluxo Baixo - Roxo) -->
+            <circle cx="20" cy="55" r="10" fill="rgba(106, 48, 147, 0.7)" filter="url(#shadow)" />
+            <text x="20" y="55" text-anchor="middle" fill="#fff" font-size="3" font-weight="bold">ENTRADA</text>
+
+            <!-- Setor de Caixas (Fluxo Alto - Vermelho) -->
+            <circle cx="50" cy="25" r="15" fill="rgba(192, 57, 43, 0.8)" filter="url(#shadow)" />
+            <text x="50" y="25" text-anchor="middle" fill="#fff" font-size="3" font-weight="bold">CAIXAS</text>
+
+            <!-- Setor Infantil (Fluxo Médio - Laranja) -->
+            <circle cx="80" cy="45" r="12" fill="rgba(230, 126, 34, 0.75)" filter="url(#shadow)" />
+            <text x="80" y="45" text-anchor="middle" fill="#fff" font-size="3" font-weight="bold">INFANTIL</text>
+
+            <!-- Legenda -->
+            <g transform="translate(70, 5)">
+              <rect x="0" y="0" width="25" height="15" fill="#fff" rx="3" stroke="#ccc" stroke-width="0.3" />
+              <text x="1" y="3.5" font-size="3" fill="#333" font-weight="bold">Densidade:</text>
+              <circle cx="2" cy="6" r="1.2" fill="rgba(192, 57, 43, 1)" />
+              <text x="4" y="7.5" font-size="3" fill="#333">Alta</text>
+              <circle cx="2" cy="10" r="1.2" fill="rgba(230, 126, 34, 1)" />
+              <text x="4" y="11.5" font-size="3" fill="#333">Média</text>
+              <circle cx="2" cy="14" r="1.2" fill="rgba(106, 48, 147, 1)" />
+              <text x="4" y="15.5" font-size="3" fill="#333">Baixa</text>
+            </g>
+
+            <!-- Definição da Sombra -->
+            <defs>
+              <filter id="shadow">
+                <feDropShadow dx="1" dy="1" stdDeviation="1" flood-color="rgba(0,0,0,0.3)" />
+              </filter>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Variáveis Globais (Cores do Chart.js)
+    const ACCENT_COLOR = '#9370db';
+    const PRIMARY_COLOR = '#6a3093';
+
+    // --- 1. Lógica de Autenticação e Sair ---
+    document.addEventListener('DOMContentLoaded', () => {
+      // Usando 'const' e 'let' para melhor escopo
+      const usuario = localStorage.getItem("usuarioLogado");
+      const sairLink = document.getElementById("sair");
+
+      if (usuario) {
+        document.getElementById("welcomeMsg").textContent = `👋 Olá, ${usuario}!`;
+      } else {
+        // Redireciona para login se não houver usuário logado (simulação)
+        // window.location.href = "login.html"; 
+        document.getElementById("welcomeMsg").textContent = `👋 Olá, Usuário Teste!`;
+      }
+
+      // Função para sair (logout)
+      if (sairLink) {
+        sairLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          localStorage.removeItem("usuarioLogado");
+          // Simula o redirecionamento após o logout
+          showAlert('Sessão encerrada com sucesso.', 'info');
+          setTimeout(() => {
+            console.log("Redirecionando para a página inicial (site.html)...");
+            // window.location.href = "site.html"; 
+          }, 1500);
+        });
+      }
+
+      // Inicializar o gráfico após o carregamento do DOM
+      inicializarGraficoLinha();
+    });
+
+    /**
+     * Exibe uma mensagem temporária de alerta (substitui alert()).
+     * @param {string} message A mensagem a ser exibida.
+     * @param {string} type Tipo de mensagem ('success', 'error', 'info').
+     */
+    function showAlert(message, type = 'info') {
+      const msgBox = document.createElement('div');
+      let color = PRIMARY_COLOR;
+
+      if (type === 'success') color = '#27ae60';
+      if (type === 'error') color = '#c0392b';
+      
+      msgBox.style.cssText = `
+        background-color: ${color};
+        color: white;
+        padding: 15px 25px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.3s, transform 0.3s;
+        transform: translateY(-20px);
+        font-weight: bold;
+      `;
+      msgBox.textContent = message;
+
+      document.body.appendChild(msgBox);
+
+      // Animar entrada
+      setTimeout(() => {
+        msgBox.style.opacity = '1';
+        msgBox.style.transform = 'translateY(0)';
+      }, 10);
+
+      // Animar saída e remover
+      setTimeout(() => {
+        msgBox.style.opacity = '0';
+        msgBox.style.transform = 'translateY(-20px)';
+        msgBox.addEventListener('transitionend', () => msgBox.remove());
+      }, 3000);
+    }
+
+    // --- 2. Lógica de Filtros e Atualização de Dados ---
+
+    function aplicarFiltros() {
+      const periodo = document.getElementById('filtroPeriodo').value;
+      const setor = document.getElementById('filtroSetor').value;
+
+      showAlert(`Filtros aplicados: Período: ${periodo}, Setor: ${setor}`, 'success');
+
+      // Simulação de Dados Dinâmicos baseada no Setor
+      let novosVisitantes, novaOcupacao, novoPico, novaMedia;
+
+      if (setor === 'entrada') {
+        novosVisitantes = '520';
+        novaOcupacao = '30%';
+        novoPico = '150';
+        novaMedia = '50';
+      } else if (setor === 'caixas') {
+        novosVisitantes = '980';
+        novaOcupacao = '75%';
+        novoPico = '350';
+        novaMedia = '110';
+      } else if (setor === 'infantil') {
+        novosVisitantes = '350';
+        novaOcupacao = '55%';
+        novoPico = '120';
+        novaMedia = '40';
+      } else { // 'all'
+        novosVisitantes = '1.850';
+        novaOcupacao = '72%';
+        novoPico = '450';
+        novaMedia = '185';
+      }
+
+      // Atualiza os KPIs na tela
+      document.getElementById('totalVisitantes').textContent = novosVisitantes;
+      document.getElementById('ocupacaoAtual').textContent = novaOcupacao;
+      document.getElementById('picoFluxo').textContent = novoPico;
+      document.getElementById('mediaHora').textContent = novaMedia;
+
+      // Chama a função para redesenhar o gráfico com novos dados (Simulados)
+      atualizarGraficoLinha(setor);
+    }
+
+    // Variável para armazenar a instância do Chart.js
+    let lineChartInstance = null; 
+
+    // --- 3. Lógica do Gráfico ---
+
+    function inicializarGraficoLinha() {
+      const ctx = document.getElementById('linechart').getContext('2d');
+      
+      // Cria um gradiente para a área sob a linha
+      const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+      gradient.addColorStop(0, ACCENT_COLOR + '66'); // 40% de opacidade
+      gradient.addColorStop(1, 'rgba(255, 255, 255, 0)'); // Totalmente transparente
+
+      const dataInicial = [100, 80, 150, 74, 300, 239, 200];
+      
+      lineChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'],
+          datasets: [{
+            label: 'Pessoas por hora',
+            data: dataInicial,
+            borderWidth: 3,
+            backgroundColor: gradient,
+            borderColor: ACCENT_COLOR,
+            pointBackgroundColor: PRIMARY_COLOR,
+            pointRadius: 5,
+            tension: 0.4, // Curvatura da linha
+            fill: true
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false, // Permite que a altura seja controlada pelo CSS
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: {
+                usePointStyle: true,
+                padding: 20
+              }
+            },
+            tooltip: {
+              backgroundColor: PRIMARY_COLOR,
+              cornerRadius: 5
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: {
+                color: 'rgba(0, 0, 0, 0.05)' // Linhas de grade mais claras
+              }
+            },
+            x: {
+              grid: {
+                display: false
+              }
+            }
+          }
+        }
+      });
+    }
+
+    /**
+     * Atualiza os dados do gráfico de linha com base no setor.
+     * @param {string} setor O setor selecionado ('all', 'entrada', 'caixas', 'infantil').
+     */
+    function atualizarGraficoLinha(setor) {
+        let novosDados;
+        
+        // Dados Mockados para Simulação
+        if (setor === 'entrada') {
+            novosDados = [50, 40, 80, 30, 120, 100, 90];
+        } else if (setor === 'caixas') {
+            novosDados = [120, 100, 200, 150, 400, 350, 300];
+        } else if (setor === 'infantil') {
+            novosDados = [40, 30, 60, 20, 100, 80, 70];
+        } else { // 'all'
+            novosDados = [100, 80, 150, 74, 300, 239, 200];
+        }
+
+        if (lineChartInstance) {
+            lineChartInstance.data.datasets[0].data = novosDados;
+            lineChartInstance.update();
+        }
+    }
+  </script>
+</body>
+
+</html>
