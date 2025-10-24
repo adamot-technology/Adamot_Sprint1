@@ -70,11 +70,10 @@ CONSTRAINT fk_Reg_Sen FOREIGN KEY (fkSensor) REFERENCES sensor(idSensor)
 
 CREATE TABLE Fale_Conosco(
 idFaleConosco INT PRIMARY KEY AUTO_INCREMENT,
-nomeFac VARCHAR (45),
-emailFac VARCHAR (45) UNIQUE,
+nome VARCHAR (45),
+emailFaleConosco VARCHAR (45) UNIQUE,
 mensagem VARCHAR (400),
-fkRegistro INT,
-CONSTRAINT pk_Fac_reg FOREIGN KEY (fkRegistro) REFERENCES registro(idRegistro)
+fkRegistro INT
 );
 
 DROP DATABASE adamot;
