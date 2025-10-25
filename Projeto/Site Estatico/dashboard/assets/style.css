@@ -165,3 +165,20 @@ header {
     box-shadow: 0 2px 5px rgba(1, 1, 1, 1);
     border-radius: 10px;
 }
+
+#chamadoButton {
+    font-size: medium;
+    color: #ffff;
+    width: 100px;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #8e44ad;
+    cursor: pointer;
+}
+
+#chamadoButton:hover {
+    background-color: rgb(104, 5, 104);
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: transform 0.5s, background-color 0.2s;
+}
