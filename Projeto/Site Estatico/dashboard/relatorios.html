@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
     <link rel="stylesheet" href="assets/style.css">
-    <title>Adamot</title>
+    <title>Adamot | Dashboard</title>
 </head>
 
 <body>
@@ -44,7 +44,7 @@
             </h3>
 
 
-            <h4><a href="/Projeto/Site Estatico/site_adamot/Site_final/site.html">
+            <h4><a href="/institucional/site.html">
                     <img style="width: 15px;" src="assets/sair.png" alt="exit">
                     Sair
                 </a>
@@ -55,17 +55,31 @@
             <div class="welcome-bar">
                 <span id="welcomeMsg"></span>
             </div>
+            <br>
+                <div style="display: flex; justify-content: center; gap: 10px; " id="select">
+                    <b>Data do Relatório:</b> 
+                    <select style="border-radius: 10px;" name="tipoReport" id="selRelatc">
+                        <option value="0">Selecione...</option>
+                        <option value="1">Crescente</option>
+                        <option value="2">Decrescente</option>
+                    </select>
+                <button id="relactButton" onclick="filtermsg()">Filtrar</button>                </div>
+                <br>
 
-            <section class="card">
-        <button class="card " >
+
+            <section class="order card"id="ordenar">
+        <button class="card" id="card1">
           Relatório 11/10/2025
         </button>
 
 
-        <button class="card " >
-          Relatório 11/10/2025
+        <button class="card" id="card2">
+          Relatório 18/10/2025
         </button>
 
+        <button class="card" id="card3">
+          Relatório 25/10/2025
+        </button>
 
       </section>
         </div>
@@ -80,6 +94,21 @@
         document.getElementById("welcomeMsg").textContent = `Bem-vindo, ${usuario}!`;
     } else {
         window.location.href = "/Site_estatico/login_cadastro/login.html";
+    }
+
+
+    function filtermsg() {
+        let select = Number(selRelatc.value);
+        if (select == 1) {
+            card1.innerHTML = `Relatório 11/10/2025`;
+            card2.innerHTML = `Relatório 18/10/2025`;
+            card3.innerHTML = `Relatório 25/10/2025`;       
+        } else if (select == 2) {
+            card1.innerHTML = `Relatório 25/10/2025`;
+            card2.innerHTML = `Relatório 18/10/2025`;
+            card3.innerHTML = `Relatório 11/10/2025`;
+        }
+
     }
 </script>
 

@@ -236,3 +236,23 @@ header {
         padding: 0;
         height: 300px;
     }
+
+
+#relactButton {
+    font-size: medium;
+    color: #ffff;
+    width: 100px;
+    border-radius: 10px;
+    padding-bottom: 20px;
+    background-color: #8e44ad;
+    cursor: pointer;
+    height: 10px;
+
+}
+
+#relacButton:hover {
+    background-color: rgb(104, 5, 104);
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: transform 0.5s, background-color 0.2s;
+}
