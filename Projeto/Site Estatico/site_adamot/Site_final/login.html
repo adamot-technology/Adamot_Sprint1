@@ -44,6 +44,8 @@
 
         } else if (email_login == "adamot@gmail.com" && senha_login == "adamot") {
             entrar.innerHTML = "Seja bem vindo"; /*Ir para a dashboard*/
+            localStorage.setItem("usuarioLogado", email_login);
+            window.location.href = "/Projeto/Site Estatico/dashboard/dashboard.html";
 
         } else {
             alert("Email ou senha inválidos. Tente novamente.");
